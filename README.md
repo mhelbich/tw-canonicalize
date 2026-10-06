@@ -12,16 +12,14 @@ Every rewrite is checked to generate the same CSS before it is applied. It does 
 
 ```bash
 # dry run in the current project (nothing is written)
-npx github:mhelbich/tw-canonicalize
+npx tw-canonicalize
 
 # write the changes
-npx github:mhelbich/tw-canonicalize --apply
+npx tw-canonicalize --apply
 
 # CI: exit code 1 if anything is not canonical
-npx github:mhelbich/tw-canonicalize --check
+npx tw-canonicalize --check
 ```
-
-`npx` installs straight from git and builds the package on install (`prepare`), so the first run takes a few seconds.
 
 Run it in a project that has Tailwind CSS v4 installed and a clean git tree, then review the diff.
 
@@ -83,3 +81,9 @@ node dist/cli.js --root /path/to/project     # after npm run build
 To try the packaged tarball: `npm pack`, then `npx --package=./tw-canonicalize-0.1.0.tgz tw-canonicalize` (plain `npx ./file.tgz` treats the path as a command).
 
 Tests run the CLI against `test/fixtures/basic` (copied to the git-ignored `test/.tmp`, so Node resolves this repo's Tailwind).
+
+## Release
+
+1. `npm version patch|minor|major` (runs lint, typecheck and tests, bumps the version, creates the tag), then `git push --follow-tags`.
+2. The `Publish` workflow stages the version (`npm stage publish`, stage-only token in the `NPM_TOKEN` secret).
+3. Approve it with 2FA: `npm stage list`, then `npm stage approve <stage-id>` (or on npmjs.com).
