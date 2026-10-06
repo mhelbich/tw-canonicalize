@@ -20,12 +20,15 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Tag matches package.json version
         run: test "v$(node -p "require('./package.json').version")" = "$GITHUB_REF_NAME"
+      # `npm stage` is not in the npm bundled with older Node releases.
+      - run: npm install -g npm@latest
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
       - run: npm run typecheck
       - run: npm test
       - run: node dist/cli.js --version
-      - run: npm publish --provenance --access public
+      # Stage-only token: the version is promoted later by a maintainer with 2FA (`npm stage approve`).
+      - run: npm stage publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
