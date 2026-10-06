@@ -1,0 +1,60 @@
+{
+  "name": "tw-canonicalize",
+  "version": "0.1.0",
+  "description": "Rewrite Tailwind CSS v4 class names in templates to their canonical form (the suggestCanonicalClasses fixes, in bulk)",
+  "homepage": "https://github.com/mhelbich/tw-canonicalize#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhelbich/tw-canonicalize.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mhelbich/tw-canonicalize/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "tw-canonicalize": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "node -e \"fs.rmSync('dist',{recursive:true,force:true})\" && tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "preversion": "npm run lint && npm run typecheck && npm test",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --import tsx --test 'test/**/*.test.ts'",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [
+    "tailwind",
+    "tailwindcss",
+    "canonical",
+    "codemod",
+    "cli"
+  ],
+  "author": {
+    "name": "mhelbich",
+    "email": "helbichmatthias@live.com",
+    "url": "https://mhelbich.de"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@tailwindcss/node": "^4.3.3",
+    "@types/node": "^22.0.0",
+    "eslint": "^10.8.1",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.11.0",
+    "prettier": "^3.9.6",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.19.2",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.67.0"
+  }
+}

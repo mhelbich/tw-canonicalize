@@ -1,0 +1,5 @@
+dist
+coverage
+package-lock.json
+test/fixtures
+test/.tmp
