@@ -1,0 +1,11 @@
+<div class="min-h-[100px] gap-[10px] flex">canonicalizable</div>
+<div class="p-4 flex">already canonical</div>
+<div class="a {{ b }} gap-[10px]">interpolated, never touched</div>
+<div :class="{ 'h-[300px]': open }" class="py-[20px]">vue style binding next to a static class</div>
+<div [ngClass]="{ 'py-[20px]': a }" class='w-[400px]'>angular binding, single quoted static class</div>
+<div
+  class="
+    mt-[5px]
+    text-brand-500
+  "
+>multi line</div>
