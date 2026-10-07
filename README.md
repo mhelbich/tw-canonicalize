@@ -87,3 +87,4 @@ Tests run the CLI against `test/fixtures/basic` (copied to the git-ignored `test
 1. `npm version patch|minor|major` (runs lint, typecheck and tests, bumps the version, creates the tag), then `git push --follow-tags`.
 2. The `Publish` workflow stages the version (`npm stage publish`, stage-only token in the `NPM_TOKEN` secret).
 3. Approve it with 2FA: `npm stage list`, then `npm stage approve <stage-id>` (or on npmjs.com).
+4. Once it is live on npm, create the GitHub release: `scripts/github-release.sh` (checks npm, then `gh release create` with generated notes).
