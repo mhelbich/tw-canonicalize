@@ -19,7 +19,8 @@ export interface LoadedDesignSystem {
 }
 
 // Packages that depend on @tailwindcss/node. With strict layouts (pnpm) it is not resolvable from the project root directly.
-const NODE_PROVIDERS = ["@tailwindcss/vite", "@tailwindcss/postcss", "@tailwindcss/cli"];
+// `tailwindcss` itself is a last resort: pnpm hoists transitive deps into the virtual store, where they are visible from tailwindcss's own location.
+const NODE_PROVIDERS = ["@tailwindcss/vite", "@tailwindcss/postcss", "@tailwindcss/cli", "tailwindcss"];
 
 /** Resolves `@tailwindcss/node` from the target project, so each repo is processed with its own Tailwind version. */
 export function resolveTailwindNode(root: string): string {

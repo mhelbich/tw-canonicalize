@@ -61,7 +61,8 @@ Exit codes: `0` ok, `1` changes found under `--check`, `2` error.
   `--root packages/a --css src/app.css`.
 - Tailwind CSS v3 projects are not supported (migrate to v4 first).
 - With strict `node_modules` layouts (pnpm) `@tailwindcss/node` is looked up through `@tailwindcss/vite`, `@tailwindcss/postcss`
-  and `@tailwindcss/cli`.
+  and `@tailwindcss/cli`, falling back to `tailwindcss` itself (pnpm hoists transitive dependencies such as the one
+  `@nuxt/ui` brings in next to it). In a monorepo, run it from the workspace that depends on Tailwind or pass `--root`.
 
 ## Development
 
